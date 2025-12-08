@@ -1,13 +1,17 @@
 use std::collections::{HashMap, HashSet, VecDeque};
 
-pub fn part_1(vec: &Vec<String>) -> u64 {
+fn reduce_to_vec_deq(vec: &Vec<String>) -> VecDeque<&String> {
     let v: Vec<_> = vec
         .iter()
         .enumerate()
         .filter(|&(i, _)| i % 2 == 0)
         .map(|(_, v)| v)
         .collect();
-    let mut deq = VecDeque::from_iter(v);
+    VecDeque::from_iter(v)
+}
+
+pub fn part_1(vec: &Vec<String>) -> u64 {
+    let mut deq = reduce_to_vec_deq(vec);
 
     let mut lines = HashSet::new();
     lines.insert(deq.pop_front().unwrap().find('S').unwrap());
@@ -32,13 +36,7 @@ pub fn part_1(vec: &Vec<String>) -> u64 {
 }
 
 pub fn part_2(vec: &Vec<String>) -> usize {
-    let v: Vec<_> = vec
-        .iter()
-        .enumerate()
-        .filter(|&(i, _)| i % 2 == 0)
-        .map(|(_, v)| v)
-        .collect();
-    let mut deq = VecDeque::from_iter(v);
+    let mut deq = reduce_to_vec_deq(vec);
 
     let mut lines = HashMap::new();
     lines.insert(deq.pop_front().unwrap().find('S').unwrap(), 1);

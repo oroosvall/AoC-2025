@@ -4,7 +4,7 @@ use std::fs::File;
 use std::io::{BufRead, BufReader, Error, Read};
 use std::time::{Instant};
 
-mod day_7;
+mod day_8;
 
 fn read_to_vec<R: Read>(io: R) -> Result<Vec<String>, Error> {
     let br = BufReader::new(io);
@@ -18,16 +18,16 @@ fn read_to_vec<R: Read>(io: R) -> Result<Vec<String>, Error> {
 fn main() -> Result<(), Error>
 {
     let mut now = Instant::now();
-    let input : Vec<String> = read_to_vec(File::open("inputs/day_7/input.txt")?)?;
+    let input : Vec<String> = read_to_vec(File::open("inputs/day_8/input.txt")?)?;
     println!("Read input: {} µs", now.elapsed().as_micros());
 
     now = Instant::now();
-    let r1 = day_7::part_1(&input);
-    println!("Part 1: {} µs", now.elapsed().as_micros());
+    let r1 = day_8::part_1(&input);
+    println!("Part 1: {} ms", now.elapsed().as_micros() as f32 / 1000.0);
 
     now = Instant::now();
-    let r2 = day_7::part_2(&input);
-    println!("Part 2: {} µs", now.elapsed().as_micros());
+    let r2 = day_8::part_2(&input);
+    println!("Part 2: {} ms", now.elapsed().as_micros() as f32/ 1000.0);
 
     println!("Result 1: {}\nResult 2: {}", r1, r2);
 
